@@ -15,8 +15,55 @@
     </p>
   <% end %>
 <% else %>
+  <div style="border:1px solid;">
     <% @table.players.times do |player_number| %>
-      Player <%= player_number %> <br />
-      <%= @table.player_show_hand(player_number)%><br />
-     <% end %>
+   <%= form_tag(:tables_draw,:method => 'post') do %>
+      <%= hidden_field_tag('player_id', player_number) %>
+ 
+      <%= submit_tag('Draw card player ' + (player_number + 1).to_s)%>
+    
+    <% end %><br />
+
+      <table border = '1'>
+        <caption> Player <%= player_number + 1 %>'s hand: </caption>
+      <tr>
+        <%@table.player_show_hand(player_number).each_with_index do |card_text,card_id|%><br />
+          <td>
+          <%= card_text %>
+          <%= form_tag( tables_update_path, :method => 'post') do %>
+          <%= hidden_field_tag('player_id',player_number) %>
+          <%= hidden_field_tag('card_id',card_id) %>
+          <%= hidden_field_tag('table',@table)%>
+          <%= submit_tag('Play') %>
+          <% end %>
+        </td>
+        <% end %>
+      </tr>
+    </table>
+    <table border = '1'>
+        <caption> Player <%= player_number + 1 %>'s discards: </caption>
+      <tr>
+        <%@table.player_show_discards(player_number).each do |card_text|%><br />
+          <td>
+          <%= card_text %>
+        </td>
+        <% end %>
+      </tr>
+    </table><br />
+<% end %>
+</div>
+<div>
+     <table border = '1'>
+        <caption> Cards in the Deck </caption>
+      <tr>
+        <%@table.show_deck.each do |card_text|%><br />
+        <td>
+          <%= card_text %>
+        </td>
+        <% end %>
+      </tr>
+    </table>
+
+
+</div>
 <% end %>

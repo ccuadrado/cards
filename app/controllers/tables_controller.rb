@@ -4,7 +4,6 @@ class TablesController < ApplicationController
   def index
     if(!session[:table].nil?)
       @table = session[:table]
-      @number_of_players = session[:table].players
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -24,16 +23,25 @@ class TablesController < ApplicationController
   # PUT /tables/1
   # PUT /tables/1.json
   def update
-    @table = Table.find(params[:id])
-
+    table = session[:table]
+    player_id = params[:player_id]
+    card_id = params[:card_id]
+    table.player_play(player_id.to_i,card_id.to_i)
+    session[:table] = table
+    
     respond_to do |format|
-      if @table.update_attributes(params[:table])
-        format.html { redirect_to @table, notice: 'Table was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @table.errors, status: :unprocessable_entity }
-      end
+        format.html { redirect_to tables_path, notice: 'Table was successfully updated.' }
     end
   end
+
+  def draw
+    player = params[:player_id].to_i
+    table = session[:table]
+    table.draw(player)
+    session[:table] = table
+    respond_to do |format|
+      format.html { redirect_to tables_path, notice: 'Card Drawn.'}
+    end
+  end
+
 end

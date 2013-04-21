@@ -14,7 +14,7 @@ class Table
   end
 
   def player_play(player,card_index)
-    @hands[player] = card.allhand[player].play(card_index)
+    @hands[player].play(card_index)
   end
 
   def player_show_hand(player)
@@ -27,5 +27,13 @@ class Table
 
   def players
     @number_of_players
+  end
+
+  def show_deck
+    @deck.examine
+  end
+
+  def draw(player)
+    @hands[player].draw
   end
 end

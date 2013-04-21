@@ -20,6 +20,11 @@ class Hand
   def list_discards
     @discards.map { |card| card.description }
   end
+
+  def draw
+    @cards_in_hand.push @@deck.deal(1)
+  end
+  
 end
 
 

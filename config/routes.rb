@@ -1,8 +1,9 @@
 Cards::Application.routes.draw do
+  match 'tables/update' => 'tables#update'
+  match 'tables/draw' => 'tables#draw'
   resources :tables do
     post 'create'
   end
-
 
   resources :hands
 

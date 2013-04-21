@@ -24,4 +24,5 @@ class Deck
   def amount
     @deck.count
   end
+
 end
