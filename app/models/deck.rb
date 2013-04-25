@@ -25,4 +25,7 @@ class Deck
     @deck.count
   end
 
+  def replace_deck(deck)
+    @deck = deck
+  end
 end

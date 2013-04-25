@@ -22,7 +22,7 @@ class Hand
   end
 
   def draw
-    @cards_in_hand.push @@deck.deal(1)
+    @cards_in_hand = (@cards_in_hand << @@deck.deal(1)).flatten
   end
   
 end

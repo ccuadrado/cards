@@ -1,7 +1,7 @@
 class Table
   # attr_accessible :title, :body
   @hands = nil
-  @deck = nil
+  @@deck = nil
   @number_of_players = nil
   def initialize(number_of_players,starting_hand_amount)
     @number_of_players = number_of_players
