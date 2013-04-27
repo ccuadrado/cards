@@ -35,12 +35,14 @@ class TablesController < ApplicationController
   end
 
   def draw
-    player = params[:player_id].to_i
-    table = session[:table]
-    table.draw(player)
-    session[:table] = table
+    respond_to do |format| format.js {} format.html { redirect_to tables_path, notice: 'Card Drawn.'}
+    end
+  end
+
+  def destroy
+    reset_session
     respond_to do |format|
-      format.html { redirect_to tables_path, notice: 'Card Drawn.'}
+      format.html { redirect_to tables_path, notice: 'Session Ended'}
     end
   end
 

@@ -1,6 +1,7 @@
 Cards::Application.routes.draw do
   match 'tables/update' => 'tables#update'
   match 'tables/draw' => 'tables#draw'
+  match 'tables/destroy' => 'tables#destroy'
   resources :tables do
     post 'create'
   end

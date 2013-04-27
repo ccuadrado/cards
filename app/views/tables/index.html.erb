@@ -17,16 +17,16 @@
 <% else %>
   <div style="border:1px solid;">
     <% @table.players.times do |player_number| %>
-   <%= form_tag(:tables_draw,:method => 'post') do %>
+      <%= form_tag(:tables_draw,:method => 'post', remote: true ) do %>
       <%= hidden_field_tag('player_id', player_number) %>
  
-      <%= submit_tag('Draw card player ' + (player_number + 1).to_s)%>
+      <%= submit_tag('Draw card player ' + (player_number + 1).to_s, id: "draw", remote: true)%>
     
     <% end %><br />
 
       <table border = '1'>
         <caption> Player <%= player_number + 1 %>'s hand: </caption>
-      <tr>
+        <tr id = 'hand'>
         <%@table.player_show_hand(player_number).each_with_index do |card_text,card_id|%><br />
           <td>
           <%= card_text %>
@@ -55,7 +55,7 @@
 <div>
      <table border = '1'>
         <caption> Cards in the Deck </caption>
-      <tr>
+      <tr id = 'drawdeck' >
         <%@table.show_deck.each do |card_text|%><br />
         <td>
           <%= card_text %>
@@ -65,5 +65,7 @@
     </table>
 
 
-</div>
+  </div>
+  <br />
+  <%= link_to 'New Game', tables_destroy_path%>
 <% end %>
