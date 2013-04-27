@@ -35,7 +35,9 @@ class TablesController < ApplicationController
   end
 
   def draw
-    respond_to do |format| format.js {} format.html { redirect_to tables_path, notice: 'Card Drawn.'}
+    respond_to do |format| 
+    format.js {} 
+    format.html { redirect_to tables_path, notice: 'Card Drawn.'}
     end
   end
 
