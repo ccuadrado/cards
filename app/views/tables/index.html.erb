@@ -40,7 +40,7 @@
         <% end %>
       </tr>
     </table>
-    <table border = '1'>
+    <table border = '1' class='discards'  id='<%=player_number + 1%>'>
         <caption> Player <%= player_number + 1 %>'s discards: </caption>
       <tr>
         <%@table.player_show_discards(player_number).each do |card_text|%><br />
