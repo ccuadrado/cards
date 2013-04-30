@@ -1,13 +1,15 @@
 jQuery(function(){
 
 $(".hand").delegate(".play","click",function (e) {
-  $(e.target).parent().appendTo('.discards');
+  var id = e.target.id;
+  $(e.target).parent().appendTo('.discards#'+id);
   $(e.target).remove();
 });
 
 $('.draw').click(function (e) {
   console.log(e.target.id);
-  $('.deck > p > span:first').append("<button class='play' remote='true'>Play</button>").appendTo('.hand > p');
+  var id = e.target.id;
+  $('.deck > p > span:first').append("<button class='play' id='"+id+"' remote='true'>Play</button>").appendTo('.hand#'+ id +' > p');
   $('deck > span:first').remove();
 });
 

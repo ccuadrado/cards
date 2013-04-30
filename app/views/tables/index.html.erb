@@ -11,16 +11,17 @@
     <%= number_field_tag 'hand_size' %><br />
     </p>
     <p>
-    <%= submit_tag 'Start Game', :confirm => 'Are you sure?' %>
+    <%= submit_tag 'Start Game', :confirm => 'Are you sure?' %> | | <%= link_to 'View/Edit Cards', cards_path %>
+
     </p>
   <% end %>
 <% else %>
   <div>
     <% @table.players.times do |player_number| %>
-      <div class="hand" id = "<%= player_number %>">
-        <p> <span> <%= button_tag( "Draw Card Player #{player_number + 1}", :class => 'draw', :id => player_number + 1, :remote => true) %>  </span></p>
+      <div class="hand" id = "hand<%= player_number + 1 %>">
+        <p> <span> <%= button_tag( "Draw Card Player #{player_number + 1}", :class => 'draw', :id => "hand#{player_number + 1}", :remote => true) %>  </span></p>
       </div>
-      <div class="discards" id="<%= player_number %>">
+      <div class="discards" id="hand<%= player_number + 1 %>">
         <p> Discards </p>
       </div>
 
@@ -35,4 +36,5 @@
   </div>
   <br />
   <%= link_to 'New Game', tables_destroy_path%>
+
 <% end %>
