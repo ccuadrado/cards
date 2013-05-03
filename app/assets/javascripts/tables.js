@@ -13,4 +13,22 @@ $('.draw').click(function (e) {
   $('deck > span:first').remove();
 });
 
+$("#rollerbutton").click(function (e) {
+  var numberOfDice = (document.getElementById('numberofdice')).value;
+  var sidesOfDice = (document.getElementById('sidesofdice')).value;
+  var resultValue = 0;
+  var resultText = "";
+  console.log("You chose a " + numberofdice.value + "d" + sidesofdice.value);
+  for(var dice = 0; dice < numberOfDice; dice++)
+  {
+    var tempValue = Math.floor((sidesOfDice * Math.random()) + 1);
+    resultValue += Number(tempValue);
+    console.log(resultValue);
+    resultText += " " + tempValue.toString(); 
+  }
+  $("#diceresult").text(resultText + " = " + resultValue);
+});
+
+
+
 });

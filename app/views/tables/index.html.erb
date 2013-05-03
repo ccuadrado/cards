@@ -12,6 +12,14 @@
   <% end %>
 <% else %>
   <div>
+    <div>
+      <span class="diceroll" id="roller">
+        <input name="numberofdice" id="numberofdice" type="text">d<input name="sidesofdice" id="sidesofdice" type="text">
+        <button class="diceroll" id="rollerbutton"> Roll!</button>
+      </span>
+      <span class="diceroll" id="diceresult"> </span>
+    </div>
+
     <% @table.players.times do |player_number| %>
       <div class="hand" id = "hand<%= player_number + 1 %>">
         <p> <span> <%= button_tag( "Draw Card Player #{player_number + 1}", :class => 'draw', :id => "hand#{player_number + 1}", :remote => true) %>  </span></p>
